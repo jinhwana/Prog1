@@ -1,16 +1,26 @@
 package coded.by.jin.walletmanager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity {
+
+    // Attributes
+    private final Button btn_newTransaction = (Button)findViewById(R.id.btn_newTransaction);
+    private final Button btn_viewTransactions = (Button)findViewById(R.id.btn_viewTransactions);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        newTransactionButtonListener();
+        viewTransactionsButtonListener();
     }
 
     @Override
@@ -33,5 +43,27 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void newTransactionButtonListener(){
+        final Context context = this;
+        btn_newTransaction.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(context, AddTransactionActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void viewTransactionsButtonListener(){
+        final Context context = this;
+        btn_viewTransactions.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(context, ViewTransactionsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
